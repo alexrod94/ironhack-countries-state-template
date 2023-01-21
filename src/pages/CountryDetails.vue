@@ -1,23 +1,23 @@
 <template>
-  <img src="#" alt="country flag" style="width: 300px" />
-  <h1>Name</h1>
+  <img :src="country.countryFlag" alt="country flag" style="width: 100px" />
+  <h1>{{ country.name.common }}</h1>
   <table class="table">
     <thead></thead>
     <tbody>
       <tr>
         <td style="width: 30%">Capital</td>
-        <td>Capital</td>
+        <td>{{country.capital}}</td>
       </tr>
       <tr>
         <td>Area</td>
-        <td>Area km <sup>2</sup></td>
+        <td>Area {{country.area}} km <sup>2</sup></td>
       </tr>
       <tr>
         <td>Borders</td>
         <td>
           <ul>
-            <li>
-              <a href="/">Border</a>
+            <li v-for="el in country.borders">
+              <p>{{el}}</p>
             </li>
           </ul>
         </td>
@@ -26,6 +26,11 @@
   </table>
 </template>
 
-<script setup></script>
+<script setup>
+  import { useCountryStore } from '../stores/country';
 
-<style></style>
+  const country = useCountryStore()
+</script>
+
+<style scoped>  
+</style>
